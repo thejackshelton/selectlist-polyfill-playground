@@ -1,15 +1,24 @@
-import { component$ } from "@builder.io/qwik";
+import { component$, useVisibleTask$ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
+import Option from "../components/Option";
+import SelectList from "../components/SelectList";
 
 export default component$(() => {
+  useVisibleTask$(async () => {
+    // @ts-ignore
+    await import("selectlist-polyfill");
+  });
+
   return (
     <>
-      <h1>Hi 👋</h1>
-      <p>
-        Can't wait to see what you build with qwik!
-        <br />
-        Happy coding.
-      </p>
+      <SelectList style={{ background: "red" }}>
+        <button>hi</button>
+        <Option disabled onClick$={() => console.log("hi!")}>
+          Option 1
+        </Option>
+        <Option>Option 2</Option>
+        <Option>Option 3</Option>
+      </SelectList>
     </>
   );
 });
