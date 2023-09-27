@@ -1,13 +1,16 @@
-import { component$, useVisibleTask$ } from "@builder.io/qwik";
+import { component$, useOn, $ } from "@builder.io/qwik";
 import type { DocumentHead } from "@builder.io/qwik-city";
 import Option from "../components/Option";
 import SelectList from "../components/SelectList";
 
 export default component$(() => {
-  useVisibleTask$(async () => {
-    // @ts-ignore
-    await import("selectlist-polyfill");
-  });
+  useOn(
+    "qvisible",
+    $(async () => {
+      // @ts-ignore
+      await import("selectlist-polyfill");
+    })
+  );
 
   return (
     <>
